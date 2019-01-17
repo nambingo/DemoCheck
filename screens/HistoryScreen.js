@@ -7,19 +7,18 @@ import {
   SafeAreaView,
   StatusBar
 } from "react-native";
-import tabBarIcon from '../utils/tabBarIcon';
 export default class HIstorySCreen extends Component {
   state = {};
-  static navigationOptions = ({ navigation }) => {
-    const { params = {} } = navigation.state;
-    let tabBarIcon = () => (
-      <Image
-        source={require('../images/ic_history.png')}
-        style={{ width: 26, height: 22 }}
-      />
-    );
-    return { tabBarIcon };
-  };
+  // static navigationOptions = ({ navigation }) => {
+  //   const { params = {} } = navigation.state;
+  //   let tabBarIcon = () => (
+  //     <Image
+  //       source={require('../images/ic_history.png')}
+  //       style={{ width: 26, height: 22 }}
+  //     />
+  //   );
+  //   return { tabBarIcon };
+  // };
   render() {
     return (
       <SafeAreaView style={styles.container}>

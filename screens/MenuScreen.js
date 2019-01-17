@@ -9,34 +9,34 @@ import {
   TouchableWithoutFeedback,
   StatusBar
 } from "react-native";
-import tabBarIcon from '../utils/tabBarIcon';
 export default class MEnuSCreen extends Component {
   state = {};
-  static navigationOptions = ({ navigation }) => {
-    const { params = {} } = navigation.state;
-    let tabBarIcon = () => (
-      <Image
-        source={require('../images/ic_menu.png')}
-        style={{ width: 26, height: 22 }}
-      />
-    );
-    return { tabBarIcon };
-  };
+  // static navigationOptions = ({ navigation }) => {
+  //   const { params = {} } = navigation.state;
+  //   let tabBarIcon = () => (
+      // <Image
+      //   source={require("../images/ic_menu.png")}
+      //   style={{ width: 26, height: 22 }}
+      // />
+  //   );
+  //   return { tabBarIcon };
+  // };
   _onPressHome = () => {
     Linking.openURL("http://vnptcheck.vn");
   };
   _onPressRule = () => {
-    this.props.navigation.navigate('Rule');
+    this.props.navigation.navigate("Rule");
   };
   _onPressTutorial = () => {
-    this.props.navigation.navigate('Tutorial');
-  }
+    this.props.navigation.navigate("Tutorial");
+  };
   _onPressLogOut = () => {
-    this.props.navigation.navigate('LogOut');
-  }
+    this.props.navigation.navigate("LogOut");
+  };
   _onPressLogIn = () => {
-    this.props.navigation.navigate('Login');
-  }
+    this.props.navigation.navigate("Login");
+  };
+  
 
   render() {
     return (
@@ -94,94 +94,99 @@ export default class MEnuSCreen extends Component {
         </View>
         <View style={[styles.viewLine]} />
         <TouchableWithoutFeedback onPress={this._onPressRule}>
-        <View style={[styles.itemView]}>
-          <View style={[styles.leftContainer]}>
+          <View style={[styles.itemView]}>
+            <View style={[styles.leftContainer]}>
+              <Image
+                style={{
+                  marginLeft: 10,
+                  width: 25,
+                  height: 25
+                }}
+                source={require("../images/ic_info.png")}
+              />
+              <Text style={styles.itemText}>Điều khoản sử dụng</Text>
+            </View>
             <Image
-              style={{
-                marginLeft: 10,
-                width: 25,
-                height: 25
-              }}
-              source={require("../images/ic_info.png")}
+              style={styles.rightContainer}
+              source={require("../images/ic_three_dot.png")}
             />
-            <Text style={styles.itemText}>Điều khoản sử dụng</Text>
           </View>
-          <Image
-            style={styles.rightContainer}
-            source={require("../images/ic_three_dot.png")}
-          />
-        </View>
         </TouchableWithoutFeedback>
         <View style={[styles.viewLine]} />
         <TouchableWithoutFeedback onPress={this._onPressTutorial}>
-        <View style={[styles.itemView]}>
-          <View style={[styles.leftContainer]}>
+          <View style={[styles.itemView]}>
+            <View style={[styles.leftContainer]}>
+              <Image
+                style={{
+                  marginLeft: 10,
+                  width: 30,
+                  height: 20
+                }}
+                source={require("../images/ic_book_3.png")}
+              />
+              <Text
+                style={{
+                  color: "black",
+                  fontSize: 16,
+                  alignSelf: "center",
+                  marginLeft: 17
+                }}
+              >
+                Hướng dẫn sử dụng
+              </Text>
+            </View>
             <Image
-              style={{
-                marginLeft: 10,
-                width: 30,
-                height: 20
-              }}
-              source={require("../images/ic_book_3.png")}
+              style={styles.rightContainer}
+              source={require("../images/ic_three_dot.png")}
             />
-            <Text
-              style={{
-                color: "black",
-                fontSize: 16,
-                alignSelf: "center",
-                marginLeft: 17
-              }}
-            >
-              Hướng dẫn sử dụng
-            </Text>
           </View>
-          <Image
-            style={styles.rightContainer}
-            source={require("../images/ic_three_dot.png")}
-          />
-        </View>
         </TouchableWithoutFeedback>
         <View style={[styles.viewLine]} />
         <TouchableWithoutFeedback onPress={this._onPressLogIn}>
-        <View style={[styles.itemView]}>
-          <View style={[styles.leftContainer]}>
+          <View style={[styles.itemView]}>
+            <View style={[styles.leftContainer]}>
+              <Image
+                style={{
+                  marginLeft: 10,
+                  width: 25,
+                  height: 25
+                }}
+                source={require("../images/ic_signin.png")}
+              />
+              <Text style={styles.itemText}>Đăng nhập</Text>
+            </View>
             <Image
-              style={{
-                marginLeft: 10,
-                width: 25,
-                height: 25
-              }}
-              source={require("../images/ic_logout_2.png")}
+              style={styles.rightContainer}
+              source={require("../images/ic_three_dot.png")}
             />
-            <Text style={styles.itemText}>Đăng nhập</Text>
           </View>
-          <Image
-            style={styles.rightContainer}
-            source={require("../images/ic_three_dot.png")}
-          />
-        </View>
         </TouchableWithoutFeedback>
         <View style={[styles.viewLine]} />
         <TouchableWithoutFeedback onPress={this._onPressLogOut}>
-        <View style={[styles.itemView]}>
-          <View style={[styles.leftContainer]}>
+          <View style={[styles.itemView]}>
+            <View style={[styles.leftContainer]}>
+              <Image
+                style={{
+                  marginLeft: 10,
+                  width: 25,
+                  height: 25
+                }}
+                source={require("../images/ic_logout.png")}
+              />
+              <Text style={styles.itemText}>Đăng xuất</Text>
+            </View>
             <Image
-              style={{
-                marginLeft: 10,
-                width: 25,
-                height: 25
-              }}
-              source={require("../images/ic_logout_2.png")}
+              style={styles.rightContainer}
+              source={require("../images/ic_three_dot.png")}
             />
-            <Text style={styles.itemText}>Đăng xuất</Text>
           </View>
-          <Image
-            style={styles.rightContainer}
-            source={require("../images/ic_three_dot.png")}
-          />
-        </View>
         </TouchableWithoutFeedback>
         <View style={[styles.viewLine]} />
+        <Image
+          style={{ flex: 1, height: undefined, width: undefined }}
+          resizeMode='cover'
+          source={require("../images/bg_menu.png")}
+        />
       </SafeAreaView>
     );
   }

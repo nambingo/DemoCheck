@@ -5,24 +5,30 @@ import {
   View,
   Image,
   SafeAreaView,
-  StatusBar
+  StatusBar,
+  TouchableWithoutFeedback
 } from "react-native";
 export default class RuleScreen extends Component {
+  _onGoBack = () => {
+    this.props.navigation.goBack();
+  };
   render() {
     return (
       <SafeAreaView style={styles.container}>
         <StatusBar />
         {/* toolbar */}
         <View style={[styles.toolbar, { backgroundColor: "#0368d0" }]}>
+        <TouchableWithoutFeedback onPress={this._onGoBack}>
           <Image
             style={{
               marginLeft: 10,
               width: 20,
               height: 20
             }}
-            source={require("../images/ic_menu.png")}
+            source={require("../images/ic_left_back.png")}
           />
-          <Text style={[styles.titleToolbar]}>Hướng dẫn</Text>
+          </TouchableWithoutFeedback>
+          <Text style={[styles.titleToolbar]}>Điều khoản sử dụng</Text>
         </View>
         <View style={styles.logoContainer}>
           <View style={styles.logoContainer1}>

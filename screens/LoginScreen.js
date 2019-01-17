@@ -47,6 +47,7 @@ export default class Login extends Component {
               <View style={styles.logoContainer1}>
                 <Image
                   style={styles.logo}
+                  resizeMode='cover'
                   source={require("../images/logo_check.png")}
                 />
               </View>
@@ -169,7 +170,7 @@ const styles = StyleSheet.create({
   logoContainer1: {
     width: "100%",
     // height: 100,
-    alignSelf: "baseline",
+    alignSelf: 'stretch',
     backgroundColor: "#FFF"
     // alignItems: 'center',
     // justifyContent: 'center',

@@ -11,18 +11,18 @@ import {
 import { TextInput } from "react-native-gesture-handler";
 export default class SCanSCreen extends Component {
   state = {};
-  static navigationOptions = ({ navigation }) => {
-    const { params = {} } = navigation.state;
-    let tabBarIcon = () => (
-      <Image
-        source={require("../images/ic_qrcode.png")}
-        style={{ width: 20, height: 20 }}
-      />
-    );
-    return { tabBarIcon };
-  };
+  // static navigationOptions = ({ navigation }) => {
+  //   const { params = {} } = navigation.state;
+  //   let tabBarIcon = () => (
+  //     <Image
+  //       source={require("../images/ic_qrcode.png")}
+  //       style={{ width: 20, height: 20 }}
+  //     />
+  //   );
+  //   return { tabBarIcon };
+  // };
   _onPressQR = () => {
-    this.props.navigation.navigate('ScanQR1');
+    this.props.navigation.navigate("ScanQR1");
   };
   render() {
     return (
@@ -60,13 +60,47 @@ export default class SCanSCreen extends Component {
             autoCorrect={false}
           />
         </View>
-        <View style={styles.viewLine} />
-        <TouchableOpacity
-          style={styles.buttonContainer}
+        <View
+          style={{
+            height: 0.5,
+            marginLeft: 10,
+            marginRight: 10,
+            backgroundColor: "#FFFFFF",
+            marginBottom: 20
+          }}
+        />
+        <View
+          style={{
+            flex: 1,
+            backgroundColor: "white"
+          }}
+        >
+          <Image
+            style={{
+              flex: 1,
+              height: undefined,
+              width: undefined,
+              marginLeft: 50
+            }}
+            resizeMode="contain"
+            source={require("../images/bg_quet2.png")}
+          />
+          <TouchableOpacity
+          style={{
+            width: 200,
+            marginTop: 20,
+            marginBottom:20,
+            backgroundColor: "#00a219",
+            paddingVertical: 10,
+            alignSelf: "center",
+            justifyContent: "center"
+          }}
           onPress={this._onPressQR}
         >
           <Text style={styles.buttonText}>Quét QR</Text>
         </TouchableOpacity>
+        </View>
+        
       </SafeAreaView>
     );
   }
@@ -99,7 +133,7 @@ const styles = StyleSheet.create({
   },
   searchView: {
     width: "100%",
-    height: 40,
+    height: 35,
     flexDirection: "row",
     alignItems: "center"
   },

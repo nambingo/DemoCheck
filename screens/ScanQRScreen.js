@@ -5,10 +5,18 @@ import {
   Text,
   TouchableOpacity,
   Linking,
+  TouchableWithoutFeedback,
+  Image,
+  View,
+  SafeAreaView,
+  StatusBar
 } from "react-native";
 
 import QRCodeScanner from "react-native-qrcode-scanner";
 export default class ScanQRScreen extends Component {
+  _onGoBack = () => {
+    this.props.navigation.goBack();
+  };
   onSuccess(e) {
     Linking
       .openURL(e.data)
@@ -34,19 +42,25 @@ export default class ScanQRScreen extends Component {
   // }
   render() {
     return (
+      <SafeAreaView style={styles.container}>
+        <StatusBar />
+      <View style={[styles.toolbar, { backgroundColor: "#0368d0" }]}>
+        <TouchableWithoutFeedback onPress={this._onGoBack}>
+          <Image
+            style={{
+              marginLeft: 10,
+              width: 20,
+              height: 20
+            }}
+            source={require("../images/ic_left_back.png")}
+          />
+          </TouchableWithoutFeedback>
+          <Text style={[styles.titleToolbar]}>Scan QR code</Text>
+        </View>
       <QRCodeScanner
         onRead={this.onSuccess.bind(this)}
-        topContent={
-          <Text style={styles.centerText}>
-            Go to <Text style={styles.textBold}>wikipedia.org/wiki/QR_code</Text> on your computer and scan the QR code.
-          </Text>
-        }
-        bottomContent={
-          <TouchableOpacity style={styles.buttonTouchable}>
-            <Text style={styles.buttonText}>OK. Got it!</Text>
-          </TouchableOpacity>
-        }
       />
+      </SafeAreaView>
     );
   }
 }
@@ -59,6 +73,23 @@ const styles = StyleSheet.create({
   // cameraContainer: {
   //   height: Dimensions.get('window').height,
   // },
+  titleToolbar: {
+    marginLeft: 16,
+    color: "white",
+    fontWeight: "normal",
+    fontSize: 18
+  },
+  toolbar: {
+    width: "100%",
+    height: 70,
+    flexDirection: "row",
+    alignItems: "center"
+  },
+  container: {
+    flex: 1,
+    backgroundColor: "white",
+    flexDirection: "column"
+  },
   centerText: {
     flex: 1,
     fontSize: 18,
