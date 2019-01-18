@@ -40,6 +40,12 @@ export default class SCanSCreen extends Component {
           />
           <Text style={[styles.titleToolbar]}>Quét QR code</Text>
         </View>
+        <View style={{
+          width: "100%",
+          height: 45,
+          flexDirection: 'column',
+          backgroundColor: "#0368d0"
+        }}>
         <View style={[styles.searchView, { backgroundColor: "#0368d0" }]}>
           <Image
             style={{
@@ -69,6 +75,7 @@ export default class SCanSCreen extends Component {
             marginBottom: 20
           }}
         />
+        </View>
         <View
           style={{
             flex: 1,
@@ -108,7 +115,7 @@ export default class SCanSCreen extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#0368d0",
+    backgroundColor: "white",
     flexDirection: "column"
   },
   buttonContainer: {
@@ -135,7 +142,9 @@ const styles = StyleSheet.create({
     width: "100%",
     height: 35,
     flexDirection: "row",
-    alignItems: "center"
+    alignItems: "center",
+    backgroundColor: "#0368d0"
+    
   },
   titleToolbar: {
     marginLeft: 16,

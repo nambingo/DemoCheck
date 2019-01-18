@@ -7,8 +7,9 @@
  */
 
 import React, { Component } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Image } from "react-native";
 import { Ionicons } from "react-native-vector-icons";
+import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import {
   createBottomTabNavigator,
   createAppContainer,
@@ -29,7 +30,7 @@ const ScanStack = createStackNavigator(
   },
   {
     headerMode: "none",
-    mode: 'card',
+    mode: "card",
     defaultNavigationOptions: {
       gesturesEnabled: false
     }
@@ -44,13 +45,51 @@ const MenuStack = createStackNavigator(
     Login: { screen: LoginScreen }
   },
   {
-    headerMode: 'none',
-    mode: 'card',
+    headerMode: "none",
+    mode: "card",
     defaultNavigationOptions: {
       gesturesEnabled: false
     }
   }
 );
+
+MenuStack.navigationOptions = {
+  tabBarIcon: ({ tintColor }) => (
+    <MaterialIcons
+      style={{ backgroundColor: "transparent" }}
+      name={"list"}
+      color={tintColor}
+      size={24}
+    />
+  ),
+  tabBarVisible: tabBarVisible => {
+    if (navigation.state.index > 0) {
+      tabBarVisible = false;
+    } else {
+      tabBarVisible: true;
+    }
+  }
+};
+
+ScanStack.navigationOptions = {
+  tabBarIcon: ({ tintColor }) => (
+    <Image
+      source={require("./images/ic_qrcode.png")}
+      style={{ width: 20, height: 20 }}
+    />
+  )
+};
+
+HistoryScreen.navigationOptions = {
+  tabBarIcon: ({ tintColor }) => (
+    <MaterialIcons
+      style={{ backgroundColor: "transparent" }}
+      name={"history"}
+      color={tintColor}
+      size={24}
+    />
+  )
+};
 
 // MenuStack.navigationOptions = ({navigation}) => {
 //   let tabBarVisible = true;
@@ -62,6 +101,7 @@ const MenuStack = createStackNavigator(
 //   };
 // }
 // ScanStack.navigationOptions = ({navigation}) => {
+
 //   let tabBarVisible = true;
 //   if (navigation.state.index > 0) {
 //     tabBarVisible = false;

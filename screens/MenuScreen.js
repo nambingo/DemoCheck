@@ -171,7 +171,7 @@ export default class MEnuSCreen extends Component {
                   width: 25,
                   height: 25
                 }}
-                source={require("../images/ic_logout.png")}
+                source={require("../images/ic_signin.png")}
               />
               <Text style={styles.itemText}>Đăng xuất</Text>
             </View>
