@@ -182,11 +182,24 @@ export default class MEnuSCreen extends Component {
           </View>
         </TouchableWithoutFeedback>
         <View style={[styles.viewLine]} />
-        <Image
+        {/* <Image
           style={{ flex: 1, height: undefined, width: undefined }}
           resizeMode='cover'
           source={require("../images/bg_menu.png")}
-        />
+        /> */}
+        <Image
+            style={{
+              width: "100%",
+              height: 140,
+              position: "absolute",
+              bottom: 0,
+              left: 0,
+              right: 0
+            }}
+            resizeMethod='auto'
+            resizeMode="cover"
+            source={require("../images/bg_menu.png")}
+          />
       </SafeAreaView>
     );
   }

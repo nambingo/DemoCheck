@@ -20,7 +20,7 @@ import HistoryScreen from "./screens/HistoryScreen";
 import MenuScreen from "./screens/MenuScreen";
 import RuleScreen from "./screens/RuleScreen";
 import TutorialScreen from "./screens/TutorialScreen";
-import LoginScreen from "./screens/LoginScreen";
+import LoginScreen from "./screens/LoginScreen2";
 import ScanQRScreen from "./screens/ScanQRScreen";
 
 const ScanStack = createStackNavigator(
@@ -62,11 +62,11 @@ MenuStack.navigationOptions = {
       size={24}
     />
   ),
-  tabBarVisible: tabBarVisible => {
+  tabBarVisible: ({isVisible}) => {
     if (navigation.state.index > 0) {
-      tabBarVisible = false;
+      isVisible = false;
     } else {
-      tabBarVisible: true;
+      isVisible: true;
     }
   }
 };
