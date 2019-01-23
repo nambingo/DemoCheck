@@ -14,14 +14,21 @@ import {
 } from "react-native";
 
 import QRCodeScanner from "react-native-qrcode-scanner";
+import {ScanRoute} from "../route";
+import NavigationService from "../service/NavigationService";
 export default class ScanQRScreen extends Component {
   _onGoBack = () => {
     this.props.navigation.goBack();
   };
   onSuccess(e) {
-    Linking
-      .openURL(e.data)
-      .catch(err => console.error('An error occured', err));
+      if(e && e.data){
+          NavigationService.navigate(ScanRoute.WEB_VIEW,{
+            WEB_VIEW_PARAMS: {
+              title: 'Thông tin sản phẩm',
+              url: e.data
+            }
+          })
+      }
   }
 
   // render() {
