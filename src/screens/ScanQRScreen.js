@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component  } from "react";
 
 import {
   StyleSheet,
@@ -9,7 +9,8 @@ import {
   Image,
   View,
   SafeAreaView,
-  StatusBar
+  StatusBar,
+  Platform
 } from "react-native";
 
 import QRCodeScanner from "react-native-qrcode-scanner";
@@ -41,6 +42,13 @@ export default class ScanQRScreen extends Component {
   //   )
   // }
   render() {
+    console.log('--------------')
+    let checkAndroidPermission = true
+    if (Platform.OS === 'android' && Platform.Version < 23) {
+      checkAndroidPermission = false
+    }
+    console.log('--------------' +checkAndroidPermission)
+
     return (
       <SafeAreaView style={styles.container}>
         <StatusBar />
@@ -58,6 +66,8 @@ export default class ScanQRScreen extends Component {
           <Text style={[styles.titleToolbar]}>Scan QR code</Text>
         </View>
       <QRCodeScanner
+          cameraProps={{captureAudio: false}}
+          checkAndroid6Permissions={checkAndroidPermission}
         onRead={this.onSuccess.bind(this)}
       />
       </SafeAreaView>
