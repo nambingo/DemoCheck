@@ -20,12 +20,11 @@ import HistoryScreen from "./src/screens/HistoryScreen";
 import MenuScreen from "./src/screens/MenuScreen";
 import RuleScreen from "./src/screens/RuleScreen";
 import TutorialScreen from "./src/screens/TutorialScreen";
-// import Login2Container from "./src/containers/Login2Container";
+import Login2Container from "./src/containers/Login2Container";
 import ScanQRScreen from "./src/screens/ScanQRScreen";
 import {Provider} from "react-redux";
 import NavigationService from "./src/service/NavigationService";
 import {store} from "./src/redux/configureStore";
-import LoginScreen2 from "./src/screens/LoginScreen2";
 
 const ScanStack = createStackNavigator(
     {
@@ -46,7 +45,7 @@ const MenuStack = createStackNavigator(
         Menu: { screen: MenuScreen },
         Rule: { screen: RuleScreen },
         Tutorial: { screen: TutorialScreen },
-        Login: { screen: LoginScreen2 }
+        Login: { screen: Login2Container }
     },
     {
         headerMode: "none",

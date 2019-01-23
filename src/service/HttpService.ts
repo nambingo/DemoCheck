@@ -1,3 +1,5 @@
+import {getAccessToken, setAccessToken} from "../utils/AsyncStorage";
+
 type RequestOptions = "POST" | "GET"
 
 class HttpService {

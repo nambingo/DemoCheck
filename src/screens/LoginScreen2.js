@@ -29,6 +29,11 @@ export default class LoginScreen2 extends Component {
   _onSelect = item => {
     console.log(item);
   };
+
+  _pressLogin = () => {
+        console.log("---------- login");
+        this.props.requestLogin('userName' , 'password')
+  };
   constructor(props) {
     super(props);
     this.state = {
@@ -169,7 +174,7 @@ export default class LoginScreen2 extends Component {
               onChecked={item => this._onSelect(item)}
             />
           </View>
-          <TouchableOpacity style={styles.buttonContainer}>
+          <TouchableOpacity style={styles.buttonContainer} onPress={this._pressLogin}>
             <Text style={styles.buttonText}>Đăng nhập</Text>
           </TouchableOpacity>
           <Image
