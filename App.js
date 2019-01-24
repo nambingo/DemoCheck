@@ -6,9 +6,9 @@
  * @flow
  */
 
-import React, { Component } from "react";
-import { View, Text, StyleSheet, Image } from "react-native";
-import { Ionicons } from "react-native-vector-icons";
+import React, {Component} from "react";
+import {View, Text, StyleSheet, Image} from "react-native";
+import {Ionicons} from "react-native-vector-icons";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import {
     createBottomTabNavigator,
@@ -25,11 +25,15 @@ import ScanQRScreen from "./src/screens/ScanQRScreen";
 import {Provider} from "react-redux";
 import NavigationService from "./src/service/NavigationService";
 import {store} from "./src/redux/configureStore";
+import LoginScreen2 from "./src/screens/LoginScreen2";
+import {ScanRoute} from "./src/route";
+import WebViewBase from "./src/components/WebViewBase";
 
 const ScanStack = createStackNavigator(
     {
-        Scan: { screen: ScanScreen },
-        ScanQR1: { screen: ScanQRScreen }
+        [ScanRoute.SCAN]: {screen: ScanScreen},
+        [ScanRoute.SCAN_QR]: {screen: ScanQRScreen},
+        [ScanRoute.WEB_VIEW]: {screen: WebViewBase}
     },
     {
         headerMode: "none",
@@ -57,9 +61,9 @@ const MenuStack = createStackNavigator(
 );
 
 MenuStack.navigationOptions = {
-    tabBarIcon: ({ tintColor }) => (
+    tabBarIcon: ({tintColor}) => (
         <MaterialIcons
-            style={{ backgroundColor: "transparent" }}
+            style={{backgroundColor: "transparent"}}
             name={"list"}
             color={tintColor}
             size={24}
@@ -75,18 +79,18 @@ MenuStack.navigationOptions = {
 };
 
 ScanStack.navigationOptions = {
-    tabBarIcon: ({ tintColor }) => (
+    tabBarIcon: ({tintColor}) => (
         <Image
             source={require("./src/images/ic_qrcode.png")}
-            style={{ width: 20, height: 20 }}
+            style={{width: 20, height: 20}}
         />
     )
 };
 
 HistoryScreen.navigationOptions = {
-    tabBarIcon: ({ tintColor }) => (
+    tabBarIcon: ({tintColor}) => (
         <MaterialIcons
-            style={{ backgroundColor: "transparent" }}
+            style={{backgroundColor: "transparent"}}
             name={"history"}
             color={tintColor}
             size={24}
