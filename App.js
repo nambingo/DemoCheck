@@ -7,7 +7,7 @@
  */
 
 import React, {Component} from "react";
-import {View, Text, StyleSheet, Image} from "react-native";
+import {View, Text, StyleSheet, Image, AppState} from "react-native";
 import {Ionicons} from "react-native-vector-icons";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import {
@@ -29,6 +29,7 @@ import LoginScreen2 from "./src/screens/LoginScreen2";
 import {ScanRoute} from "./src/route";
 import WebViewBase from "./src/components/WebViewBase";
 import HistoryContainer from "./src/containers/HistoryContainer";
+import {database} from "./src/database/Database";
 
 const ScanStack = createStackNavigator(
     {
@@ -59,10 +60,10 @@ const HistoryStack = createStackNavigator(
 );
 const MenuStack = createStackNavigator(
     {
-        Menu: { screen: MenuScreen },
-        Rule: { screen: RuleScreen },
-        Tutorial: { screen: TutorialScreen },
-        Login: { screen: Login2Container }
+        Menu: {screen: MenuScreen},
+        Rule: {screen: RuleScreen},
+        Tutorial: {screen: TutorialScreen},
+        Login: {screen: Login2Container}
     },
     {
         headerMode: "none",
@@ -156,8 +157,70 @@ const BottomTabMaterial = createBottomTabNavigator(
     }
 );
 export const AppContainer = createAppContainer(BottomTabMaterial);
-
 export default class App extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            appState: AppState.currentState,
+            databaseIsReady: false
+        };
+        this.handleAppStateChange = this.handleAppStateChange.bind(this);
+    }
+
+    componentDidMount() {
+        // App is starting up
+        this.appIsNowRunningInForeground();
+        this.setState({
+            appState: "active"
+        });
+        // Listen for app state changes
+        AppState.addEventListener("change", this.handleAppStateChange);
+        // database.addHistoryItem("1", "xxx", 1, "man", "10:1:1", 'A').then(value => {
+        //     console.log("addHistoryItem suc " + JSON.stringify(value))
+        // }).catch(error => {
+        //     console.log("addHistoryItem error " + JSON.stringify(error))
+        // })
+        //
+        // database.getAllHistory('A').then(value => {
+        //     console.log("getAllHistory suc " + JSON.stringify(value))
+        // }).catch(error => {
+        //     console.log("getAllHistory error " + JSON.stringify(error))
+    }
+
+    componentWillUnmount() {
+        // Remove app state change listener
+        AppState.removeEventListener("change", this.handleAppStateChange);
+    }
+
+    handleAppStateChange(nextAppState) {
+        if (
+            this.state.appState.match(/inactive|background/) &&
+            nextAppState === "active"
+        ) {
+            // App has moved from the background (or inactive) into the foreground
+            this.appIsNowRunningInForeground();
+        } else if (
+            this.state.appState === "active" &&
+            nextAppState.match(/inactive|background/)
+        ) {
+            // App has moved from the foreground into the background (or become inactive)
+            this.appHasGoneToTheBackground();
+        }
+        this.setState({appState: nextAppState});
+    }
+
+    appIsNowRunningInForeground = () => {
+        console.log("App is now running in the foreground!");
+        return database.open().then(() =>
+            this.setState({
+                databaseIsReady: true
+            })
+        );
+    }
+    appHasGoneToTheBackground = () => {
+        console.log("App has gone to the background.");
+        database.close();
+    }
 
     render() {
         return (
