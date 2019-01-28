@@ -21,7 +21,6 @@ import MenuScreen from "./src/screens/MenuScreen";
 import RuleScreen from "./src/screens/RuleScreen";
 import TutorialScreen from "./src/screens/TutorialScreen";
 import Login2Container from "./src/containers/Login2Container";
-import ScanQRScreen from "./src/screens/ScanQRScreen";
 import {Provider} from "react-redux";
 import NavigationService from "./src/service/NavigationService";
 import {store} from "./src/redux/configureStore";
@@ -30,11 +29,12 @@ import {ScanRoute} from "./src/route";
 import WebViewBase from "./src/components/WebViewBase";
 import HistoryContainer from "./src/containers/HistoryContainer";
 import {database} from "./src/database/Database";
+import ScanQRContainer from "./src/containers/ScanQRContainer";
 
 const ScanStack = createStackNavigator(
     {
         [ScanRoute.SCAN]: {screen: ScanScreen},
-        [ScanRoute.SCAN_QR]: {screen: ScanQRScreen},
+        [ScanRoute.SCAN_QR]: {screen: ScanQRContainer},
         [ScanRoute.WEB_VIEW]: {screen: WebViewBase}
     },
     {

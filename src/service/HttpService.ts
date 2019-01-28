@@ -34,14 +34,9 @@ class HttpService {
                     }
                     return res.json()
                 }).then(async (data) => {
-                    if (data.code == 0 && data.data) {
+                    if (data.code == 200) {
                         console.log(`%c Success REST from ${url}: `, 'background: #66ff33 ;color: #000', data)
                         return resolve(data)
-                    } else if (data.code == 14) {
-                        return await new HttpService().request(method, url, data).catch(data => {
-                            //Navigate to Home
-                            return reject(data)
-                        })
                     } else {
                         console.log(`%c Error REST from ${url}: `, 'background: #ff0000 ;color: #fff', data)
                         return reject(data)
