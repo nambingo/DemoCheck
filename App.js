@@ -28,6 +28,7 @@ import {store} from "./src/redux/configureStore";
 import LoginScreen2 from "./src/screens/LoginScreen2";
 import {ScanRoute} from "./src/route";
 import WebViewBase from "./src/components/WebViewBase";
+import HistoryContainer from "./src/containers/HistoryContainer";
 
 const ScanStack = createStackNavigator(
     {
@@ -44,6 +45,18 @@ const ScanStack = createStackNavigator(
     }
 );
 
+const HistoryStack = createStackNavigator(
+    {
+        History: { screen: HistoryContainer },
+    },
+    {
+        headerMode: "none",
+        mode: "card",
+        defaultNavigationOptions: {
+            gesturesEnabled: false
+        }
+    }
+);
 const MenuStack = createStackNavigator(
     {
         Menu: { screen: MenuScreen },
@@ -59,7 +72,6 @@ const MenuStack = createStackNavigator(
         }
     }
 );
-
 MenuStack.navigationOptions = {
     tabBarIcon: ({tintColor}) => (
         <MaterialIcons
@@ -87,7 +99,7 @@ ScanStack.navigationOptions = {
     )
 };
 
-HistoryScreen.navigationOptions = {
+HistoryStack.navigationOptions = {
     tabBarIcon: ({tintColor}) => (
         <MaterialIcons
             style={{backgroundColor: "transparent"}}
@@ -124,7 +136,7 @@ const BottomTabMaterial = createBottomTabNavigator(
             screen: ScanStack
         },
         History: {
-            screen: HistoryScreen
+            screen: HistoryStack
         },
         Menu: {
             screen: MenuStack
