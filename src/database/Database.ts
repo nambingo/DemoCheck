@@ -1,6 +1,7 @@
 import SQLite from "react-native-sqlite-storage";
 import {DatabaseInitialization} from "./DatabaseInitialization";
 import {QUERY_SCAN_HISTORY} from "./Constance";
+import {getCurrentDateTime} from "../utils/TimeUtils";
 
 export interface Database {
     open(): Promise<SQLite.SQLiteDatabase>;
@@ -9,7 +10,7 @@ export interface Database {
 
     getAllHistory(userName: string): Promise<any>;
 
-    addHistoryItem(item_code: string, item_name: string, item_status: number, manufacturer: string, time: string, username: string): Promise<void>;
+    addHistoryItem(data: any, itemCode: any): Promise<void>;
 
     // updateHistoryItem(listItem: any): Promise<void>;
 
@@ -77,22 +78,24 @@ class DatabaseImpl implements Database {
             });
     }
 
-    public addHistoryItem(item_code: string, item_name: string, item_status: number, manufacturer: string, time: string, username: string): Promise<void> {
+    public addHistoryItem(data: any, itemCode: any): Promise<void> {
+        const {pro_name, ite_status, com_name, username} = data
+        console.log('xxxxxxx addHistoryItem')
         return this.getDatabase()
             .then(db =>
                 db.executeSql(QUERY_SCAN_HISTORY.INSERT_HITORY, [
-                    item_code, item_name, item_status, manufacturer, time, username
+                    itemCode, pro_name, ite_status, com_name, getCurrentDateTime(), username
                 ])
             )
             .then(([results]) =>
                 console.log(
-                    `[db] addHistoryItem with "${item_name}" created successfully with id: ${
+                    `[db] addHistoryItem with "${pro_name}" created successfully with id: ${
                         results.insertId
                         }`
                 )
             ).catch(reason => {
                 console.log(
-                    `[db] addHistoryItem with "${item_name}" created error with id: ${reason
+                    `[db] addHistoryItem with "${pro_name}" created error with id: ${reason
                         }`
                 )
             });
@@ -160,8 +163,12 @@ class DatabaseImpl implements Database {
         // });
     }
 
-    private getDatabase(): Promise<SQLite.SQLiteDatabase> {
+    private getDatabase = (): Promise<SQLite.SQLiteDatabase> => {
+        console.log('xcx')
         if (this.database !== undefined) {
+
+
+            
             return Promise.resolve(this.database);
         }
         return this.open();
