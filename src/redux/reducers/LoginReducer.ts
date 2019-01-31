@@ -5,7 +5,9 @@ const initState = {
     data: '',
     email: '',
     password: '',
-    message: ''
+    message: '',
+    error: false,
+    user: ''
 }
 export default function (state = initState, action: any) {
     switch (action.type) {
@@ -18,14 +20,14 @@ export default function (state = initState, action: any) {
         case  LoginType.REQUEST_LOGIN_SUCCESS :
             return Object.assign({}, state, {
                 loading: false,
-                data: action.data,
-                message: action.message,
+                error: false,
+                user: action.user
             })
         case LoginType.REQUEST_LOGIN_FAILED :
             return Object.assign({}, state, {
                 loading: false,
-                data: action.data,
-                message: action.message
+                message: action.message,
+                error: true
             })
         default :
             return state

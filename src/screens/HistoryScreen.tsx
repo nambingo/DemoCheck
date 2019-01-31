@@ -105,6 +105,7 @@ export default class HistoryScreen extends Component<Props, State> {
     renderItemHistory = (item: any) => {
         console.log('ite' + JSON.stringify(item))
         const {pro_name, ite_status, company_infor, code, time} = item.item
+        const {vi} = JSON.parse(pro_name)
         let com_name
         if (company_infor) {
             com_name = company_infor.com_name
@@ -155,7 +156,7 @@ export default class HistoryScreen extends Component<Props, State> {
                                       fontSize: 16,
                                       color: '#000000',
                                       fontWeight: "bold"
-                                  }}>{pro_name}</Text>
+                                  }}>{vi}</Text>
                             <View style={{flex: 1, flexDirection: 'row', justifyContent: 'flex-start'}}>
                                 <Text style={{fontSize: 14, width: 80, color: '#000000'}}>Mã SP</Text>
                                 <Text numberOfLines={1} ellipsizeMode='tail'
