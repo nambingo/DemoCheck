@@ -1,48 +1,19 @@
 import {all, call, fork, put, takeLatest} from 'redux-saga/effects'
 import {URL_LOGIN} from "../../config/api"
 import HttpService from "../../service/HttpService"
-import {HistoryType, LoginType} from "../types";
-import {database} from "../../database/Database";
-
-const data_mock = [
-    {
-        name: 'xxx',
-        code: 12213,
-        nhaxs: 'nhasx',
-        thoigian: '12-12-2015 12:23:12',
-        // image: require("../images/ic_menu.png")
-    },
-    {
-        name: 'xxx',
-        code: 12213,
-        nhaxs: 'nhasx',
-        thoigian: '12-12-2015 12:23:12',
-        // image: require("../images/ic_menu.png")
-    }, {
-        name: 'xxx',
-        code: 12213,
-        nhaxs: 'nhasx',
-        thoigian: '12-12-2015 12:23:12',
-        // image: require("../images/ic_menu.png")
-    }
-]
+import {HistoryType} from "../types";
+import {getAllHistory} from "../../utils/AsyncStorage";
 
 function* getHistory() {
-    console.log("xxxxxxxxxxxxx")
-
     yield takeLatest(HistoryType.REQUEST_HISTORY, function* (action: any) {
         try {
-            let data = database.getAllHistory('NA').then(data =>{
-                // return data
-            }).catch(reason => {
-
-            });
-            console.log('--------' + JSON.stringify(data))
+            const data = yield call(getAllHistory);
+            console.log("getHistory  "+ JSON.stringify(data))
             // if success save info user and put user info data to view
             yield put({
                 type: HistoryType.REQUEST_HISTORY_SUCCESS,
                 message: '',
-                data: data_mock
+                data: data
             })
         } catch (e) {
             yield put({

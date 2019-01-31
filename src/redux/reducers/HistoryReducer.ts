@@ -7,7 +7,6 @@ const initState = {
     error: false
 }
 export default function (state = initState, action: any) {
-    console.log('reducer' + JSON.stringify(action))
     switch (action.type) {
         case HistoryType.REQUEST_HISTORY :
             return Object.assign({}, state, {
