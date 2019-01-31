@@ -19,6 +19,7 @@ export default class ScanQRScreen extends Component<Props, State> {
     _onGoBack = () => {
         this.props.navigation.goBack();
     };
+    private scanner: any;
 
     onSuccess(e: any) {
         if (e && e.data) {
@@ -42,32 +43,11 @@ export default class ScanQRScreen extends Component<Props, State> {
 
         }
     }
-
-    // render() {
-    //   return (
-    //     <NavigatorIOS
-    //       initialRoute={{
-    //         component: QRCodeScanner,
-    //         title: 'Scan Code',
-    //         passProps: {
-    //           onRead: this.onSuccess.bind(this),
-    //           cameraStyle: styles.cameraContainer,
-    //           topViewStyle: styles.zeroContainer,
-    //           bottomViewStyle: styles.zeroContainer,
-    //         }
-    //       }}
-    //       style={{flex: 1}}
-    //     />
-    //   )
-    // }
     render() {
-        console.log('--------------')
         let checkAndroidPermission = true
         if (Platform.OS === 'android' && Platform.Version < 23) {
             checkAndroidPermission = false
         }
-        console.log('--------------' + checkAndroidPermission)
-
         return (
             <SafeAreaView style={styles.container}>
                 <StatusBar/>
@@ -85,6 +65,8 @@ export default class ScanQRScreen extends Component<Props, State> {
                     <Text style={[styles.titleToolbar]}>Scan QR code</Text>
                 </View>
                 <QRCodeScanner
+                    reactivate={true}
+                    showMarker={true}
                     cameraProps={{captureAudio: false}}
                     checkAndroid6Permissions={checkAndroidPermission}
                     onRead={this.onSuccess.bind(this)}
