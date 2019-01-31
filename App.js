@@ -167,30 +167,30 @@ export default class App extends React.Component {
         this.handleAppStateChange = this.handleAppStateChange.bind(this);
     }
 
-    componentDidMount() {
-        // App is starting up
-        this.appIsNowRunningInForeground();
-        this.setState({
-            appState: "active"
-        });
-        // Listen for app state changes
-        AppState.addEventListener("change", this.handleAppStateChange);
-        // database.addHistoryItem("1", "xxx", 1, "man", "10:1:1", 'A').then(value => {
-        //     console.log("addHistoryItem suc " + JSON.stringify(value))
-        // }).catch(error => {
-        //     console.log("addHistoryItem error " + JSON.stringify(error))
-        // })
-        //
-        // database.getAllHistory('A').then(value => {
-        //     console.log("getAllHistory suc " + JSON.stringify(value))
-        // }).catch(error => {
-        //     console.log("getAllHistory error " + JSON.stringify(error))
-    }
-
-    componentWillUnmount() {
-        // Remove app state change listener
-        AppState.removeEventListener("change", this.handleAppStateChange);
-    }
+    // componentDidMount() {
+    //     // App is starting up
+    //     this.appIsNowRunningInForeground();
+    //     this.setState({
+    //         appState: "active"
+    //     });
+    //     // Listen for app state changes
+    //     AppState.addEventListener("change", this.handleAppStateChange);
+    //     // database.addHistoryItem("1", "xxx", 1, "man", "10:1:1", 'A').then(value => {
+    //     //     console.log("addHistoryItem suc " + JSON.stringify(value))
+    //     // }).catch(error => {
+    //     //     console.log("addHistoryItem error " + JSON.stringify(error))
+    //     // })
+    //     //
+    //     // database.getAllHistory('A').then(value => {
+    //     //     console.log("getAllHistory suc " + JSON.stringify(value))
+    //     // }).catch(error => {
+    //     //     console.log("getAllHistory error " + JSON.stringify(error))
+    // }
+    //
+    // componentWillUnmount() {
+    //     // Remove app state change listener
+    //     AppState.removeEventListener("change", this.handleAppStateChange);
+    // }
 
     handleAppStateChange(nextAppState) {
         if (
