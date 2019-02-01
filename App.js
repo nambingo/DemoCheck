@@ -30,6 +30,7 @@ import WebViewBase from "./src/components/WebViewBase";
 import HistoryContainer from "./src/containers/HistoryContainer";
 import {database} from "./src/database/Database";
 import ScanQRContainer from "./src/containers/ScanQRContainer";
+import MenuContainer from "./src/containers/MenuContainer";
 
 const ScanStack = createStackNavigator(
     {
@@ -60,7 +61,7 @@ const HistoryStack = createStackNavigator(
 );
 const MenuStack = createStackNavigator(
     {
-        Menu: {screen: MenuScreen},
+        Menu: {screen: MenuContainer},
         Rule: {screen: RuleScreen},
         Tutorial: {screen: TutorialScreen},
         Login: {screen: Login2Container}

@@ -9,7 +9,20 @@ export async function getAccessToken(): Promise<any> {
         return await AsyncStorage.getItem("accessToken");
     } catch (e) {
         console.log(e);
-        await clearAccessToken();
+        return null;
+    }
+}
+export async function setInfoUser(val: string) {
+    return await AsyncStorage.setItem("user", JSON.stringify(val));
+}
+
+export async function getInfoUser(): Promise<any> {
+    try {
+        const data = await AsyncStorage.getItem("user") as any;
+        const dataObj = JSON.parse(data)
+        return dataObj
+    } catch (e) {
+        console.log(e);
         return null;
     }
 }
@@ -45,5 +58,5 @@ export async function clearHistory() {
 }
 
 export async function clearAccessToken() {
-    AsyncStorage.removeItem("accessToken");
+    AsyncStorage.removeItem("user");
 }
