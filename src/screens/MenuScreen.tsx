@@ -9,6 +9,7 @@ import {
     TouchableWithoutFeedback,
     StatusBar, TouchableOpacity, ScrollView
 } from "react-native";
+import {getInfoUser} from "../utils/AsyncStorage";
 
 interface Props {
     navigation: any,
@@ -254,6 +255,7 @@ export default class MEnuSCreen extends Component<Props, State> {
 
     renderInfoUser = (isLogin: boolean) => {
         let user = this.props.user
+        let image = user.use_thumbnail ? {uri: user.use_thumbnail} : require("../images/ic_default_user.png")
         return (isLogin && user ?
             <View style={{
                 marginTop: 15,
@@ -285,7 +287,7 @@ export default class MEnuSCreen extends Component<Props, State> {
                                 height: 100,
                                 width: 100
                             }}
-                            source={{uri: user.use_thumbnail}}
+                            source={image}
                         />
                     </View>
                     <View style={{flexDirection: 'column', flex: 1, marginStart: 10, marginEnd: 15, marginTop: 35}}>
