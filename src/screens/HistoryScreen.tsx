@@ -49,14 +49,6 @@ export default class HistoryScreen extends Component<Props, State> {
                 <StatusBar/>
                 {/* toolbar */}
                 <View style={[styles.toolbar, {backgroundColor: "#0368d0"}]}>
-                    <Image
-                        style={{
-                            marginLeft: 10,
-                            width: 20,
-                            height: 20
-                        }}
-                        source={require("../images/ic_menu.png")}
-                    />
                     <Text style={[styles.titleToolbar]}>Lịch sử</Text>
                 </View>
                 <View style={{flex: 1}}>
@@ -238,6 +230,7 @@ const styles = StyleSheet.create({
     toolbar: {
         width: '100%',
         height: 70,
+        justifyContent: "center",
         flexDirection: "row",
         alignItems: "center"
     },

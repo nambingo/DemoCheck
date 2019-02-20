@@ -30,14 +30,6 @@ export default class SCanSCreen extends Component {
         <StatusBar />
         {/* toolbar */}
         <View style={[styles.toolbar, { backgroundColor: "#0368d0" }]}>
-          <Image
-            style={{
-              marginLeft: 10,
-              width: 20,
-              height: 20
-            }}
-            source={require("../images/ic_menu.png")}
-          />
           <Text style={[styles.titleToolbar]}>Quét QR code</Text>
         </View>
         <View style={{
@@ -135,6 +127,7 @@ const styles = StyleSheet.create({
   toolbar: {
     width: "100%",
     height: 70,
+    justifyContent: "center",
     flexDirection: "row",
     alignItems: "center"
   },

@@ -60,14 +60,14 @@ export default class MEnuSCreen extends Component<Props, State> {
                 <StatusBar/>
                 {/* toolbar */}
                 <View style={[styles.toolbar, {backgroundColor: "#0368d0"}]}>
-                    <Image
+                    {/* <Image
                         style={{
                             marginLeft: 10,
                             width: 20,
                             height: 20
                         }}
                         source={require("../images/ic_menu.png")}
-                    />
+                    /> */}
                     <Text style={[styles.titleToolbar]}>Thông tin chung</Text>
                 </View>
                 <ScrollView>
@@ -335,6 +335,7 @@ const styles = StyleSheet.create({
         height: 30
     },
     toolbar: {
+        justifyContent: "center",
         width: "100%",
         height: 70,
         flexDirection: "row",
@@ -347,7 +348,7 @@ const styles = StyleSheet.create({
         marginLeft: 20
     },
     titleToolbar: {
-        marginLeft: 16,
+        textAlign: "center" ,
         color: "white",
         fontWeight: "normal",
         fontSize: 18
